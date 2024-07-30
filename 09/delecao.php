@@ -10,9 +10,9 @@ try {
     $sql = "DELETE FROM itens_compra  WHERE (:id = id)";
     //preparar escrevendo o sql dele
     $stmt = $pdo->prepare($sql);
-    $stmt->execute(['nome_produto' => 'Abacaxi', 'quantidade' => 15]);
+    $stmt->execute(['id' =>  2]);
 
-    echo "Item inserido com sucesso!";
+    echo "Item removido com sucesso!";
 
 } catch (PDOException $e) {
     echo 'Falha na conexão: ' . $e->getMessage();

@@ -7,10 +7,10 @@ $password = 'Senha@123';
 try {
     $pdo = new PDO($dsn, $user, $password);
 
-    $sql = "DELETE FROM itens_compra  WHERE (:id = id)";
+    $sql = "DELETE FROM itens_compra  WHERE :id = id";
     //preparar escrevendo o sql dele
     $stmt = $pdo->prepare($sql);
-    $stmt->execute(['id' =>  2]);
+    $stmt->execute(['id' =>  3]);
 
     echo "Item removido com sucesso!";
 

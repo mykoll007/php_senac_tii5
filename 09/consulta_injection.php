@@ -10,6 +10,10 @@ $dbh = new PDO($dsn, $user, $password);
 //Atribuir para caso precise caso nao apareça a mensagem que deu errado e especificado
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+//Banco de dados = teste
+//table = pessoa
+//coluna = nome
+//resultado da coluna = mykoll
 $sql = "SELECT * FROM teste.pessoa WHERE nome = :pessoa";
 
 //preparar escrevendo o sql dele

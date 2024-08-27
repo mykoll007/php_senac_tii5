@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Contato por ID</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+#contacts-container {
+    margin-bottom: 20px;
+}
+
+#contacts-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#contacts-list li {
+    margin-bottom: 10px;
+}
+
+#form-container {
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+
+label {
+    display: inline-block;
+    width: 80px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+    </style>
+</head>
+<body>
+    <h1>Buscar Contatos por ID</h1>
+
+    <input type="text" id="contact-id" placeholder="Digite o ID do contato">
+    <button onclick="searchContact()">Buscar</button>
+    <div id="contactDetails"></div>
+
+    <script>
+        function searchContact(){
+           const contactId = document.getElementById("contact-id").value;
+
+           fetch(`api.php?action=get&id=${contactId}`)
+           .then(response => response.json())
+           .then(data => {
+            if(data.error){
+                document.getElementById('contactDetails').innerText = data.error ? data.error : "Não encontrado";
+            } else{
+                document.getElementById('contactDetails').innerHTML = 
+                `<h2>Detalhes do contato</h2>
+                <p>ID : ${data.id} </p>
+                <p>Nome: ${data.nome} </p>
+                <p>Telefone: ${data.telefone}</p>
+                <p>Email: ${data.email}</p>
+                `
+                
+            }
+           })
+        }
+    </script>
+</body>
+</html>

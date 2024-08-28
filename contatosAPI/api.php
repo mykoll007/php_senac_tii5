@@ -22,11 +22,18 @@ switch($action){
         $id = $_GET['id'];
         echo json_encode(DatabaseRepository::getContactById($id));
         break;
-        case 'add':
+    case 'add':
             $data = json_decode(file_get_contents('php://input', true));
             $success = DatabaseRepository::insertContact($data->nome, $data->telefone, $data->email);
             echo json_encode(['success' => $success]);
-            break;
+        break;
+    case 'delete':
+            $id = $_GET['id'];
+            $success = DatabaseRepository::deleteContact($id);
+            echo json_encode(['scucess' => $success]);
+        break;
+        
+
     default:
     echo json_encode(['error' => 'Acao invalida']);
 }

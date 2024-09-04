@@ -4,8 +4,7 @@ require_once 'DatabaseRepository.php';
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome_produto = $_POST['nome_produto'];
     $quantidade = $_POST['quantidade'];
-    $comprado = $_POST['comprado'];
-    DatabaseRepository::insertProducts($nome_produto, $quantidade, $comprado);
+    DatabaseRepository::insertProducts($nome_produto, $quantidade);
     header('Location: list_products.php');
     exit;
 }
@@ -28,9 +27,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <br>
         <label for="quantidade">Quantidade:</label>
         <input type="text" name="quantidade" id="quantidade" required>
-        <br>
-        <label for="comprado">Comprado:</label>
-        <input type="text" name="comprado" id="comprado" required>
         <br>
         
         <button type="submit">Adicionar</button>

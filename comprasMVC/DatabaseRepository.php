@@ -29,12 +29,12 @@ class DatabaseRepository{
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public static function insertProducts($nome_produto, $quantidade, $comprado) {
+    public static function insertProducts($nome_produto, $quantidade) {
         $pdo = self::connect();
-        $sql = "INSERT INTO itens_compra (nome_produto, quantidade, comprado) 
-                VALUES (?, ?, ?)";
+        $sql = "INSERT INTO itens_compra (nome_produto, quantidade) 
+                VALUES (?, ?)";
         $stmt = $pdo->prepare($sql);
-        return $stmt->execute([$nome_produto, $quantidade, (int)$comprado]);
+        return $stmt->execute([$nome_produto, $quantidade]);
     }
     public static function updateProducts($id, $nome_produto, $quantidade, $comprado)
     {

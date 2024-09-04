@@ -36,12 +36,14 @@ class DatabaseRepository{
         $stmt = $pdo->prepare($sql);
         return $stmt->execute([$nome_produto, $quantidade]);
     }
-    public static function updateProducts($id, $nome_produto, $quantidade, $comprado)
+    public static function updateProducts($id, $nome_produto, $quantidade)
     {
         $pdo = self::connect();
-        $sql = "UPDATE itens_compra SET nome_produto = :nome_produto, quantidade = :quantidade, comprado = :comprado WHERE id = :id";
+
+        
+        $sql = "UPDATE itens_compra SET nome_produto = :nome_produto, quantidade = :quantidade WHERE id = :id";
         $stmt = $pdo->prepare($sql);
-        return $stmt->execute(['id' => $id, 'nome_produto' => $nome_produto, 'quantidade' => $quantidade , 'comprado' => (int)$comprado]);
+        return $stmt->execute(['id' => $id, 'nome_produto' => $nome_produto, 'quantidade' => $quantidade]);
     }
     public static function deleteProducts($id)
     {
@@ -49,6 +51,12 @@ class DatabaseRepository{
         $sql = "DELETE FROM itens_compra WHERE id = :id";
         $stmt = $pdo->prepare($sql);
         return $stmt->execute(['id' => $id]);
+    }
+    public static function buyProducts($id){
+        $pdo = self::connect();
+        $sql = "UPDATE itens_compra SET comprado = comprado + 1 , quantidade = quantidade -1 WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute(['id'=> $id]);
     }
 
 }

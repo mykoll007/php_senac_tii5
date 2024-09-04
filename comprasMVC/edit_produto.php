@@ -6,8 +6,7 @@ $product = DatabaseRepository::getProductsById($id);
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $nome_produto = $_POST['nome_produto'];
     $quantidade = $_POST['quantidade'];
-    $comprado = $_POST['comprado'];
-    DatabaseRepository::updateProducts($id, $nome_produto, $quantidade , $comprado);
+    DatabaseRepository::updateProducts($id, $nome_produto, $quantidade);
     header('Location: list_products.php');
     exit;
 }
@@ -29,9 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <label for="quantidade">Quantidade:</label>
         <input type="text" name="quantidade" id="quantidade" value="<?= $product['quantidade'];?>" required>
         <br>
-        <label for="comprado">Comprado:</label>
-        <input type="text" name="comprado" id="comprado" value="<?= $product['comprado'];?>" required>
-        <br>
+        
         
         <button type="submit">Editar</button>
     </form>

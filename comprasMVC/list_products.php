@@ -28,6 +28,7 @@ $products = DatabaseRepository::getAllProducts();
                     <td><?= $product['quantidade']; ?></td>
                     <td><?= $product['comprado']; ?></td>
                     <td>
+                    <a href="comprar_produto.php?id=<?= $product['id']; ?>">Comprar</a>
                         <a href="edit_produto.php?id=<?= $product['id']; ?>">Editar</a>
                         <a href="delect_produto.php?id=<?= $product['id']; ?>" onclick="return confirm('Tem certeza que deseja deletar esse contato?');">Deletar</a>
                     </td>

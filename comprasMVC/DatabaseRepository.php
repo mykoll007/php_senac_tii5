@@ -54,7 +54,8 @@ class DatabaseRepository{
     }
     public static function buyProducts($id){
         $pdo = self::connect();
-        $sql = "UPDATE itens_compra SET comprado = comprado + 1 , quantidade = quantidade -1 WHERE id = :id";
+
+        $sql = "UPDATE itens_compra SET comprado = comprado + 1 , quantidade = quantidade -1 WHERE id = :id AND quantidade > 0";
         $stmt = $pdo->prepare($sql);
         return $stmt->execute(['id'=> $id]);
     }
